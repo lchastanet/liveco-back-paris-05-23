@@ -1,0 +1,13 @@
+tr:hover {
+  cursor: pointer;
+  filter: brightness(150%);
+}
+
+.margin {
+  margin-right: 1rem;
+}
+
+.red-bg {
+  background-color: crimson;
+  border: solid crimson 1px;
+}
