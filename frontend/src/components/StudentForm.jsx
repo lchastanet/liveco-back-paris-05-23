@@ -2,8 +2,24 @@
 
 import { useNavigate } from "react-router-dom"
 
-function StudentForm({ student, setStudent }) {
+function StudentForm({ student, setStudent, modCreate }) {
   const navigate = useNavigate()
+
+  const handleAdd = () => {
+    fetch(`http://localhost:8000/student`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(student),
+    }).then((res) => {
+      if (res.status === 201) {
+        navigate("/")
+      } else {
+        console.error("Erreur")
+      }
+    })
+  }
 
   const handleEdit = () => {
     fetch(`http://localhost:8000/student/${student.id}`, {
@@ -77,18 +93,25 @@ function StudentForm({ student, setStudent }) {
         onChange={(e) => setStudent({ ...student, email: e.target.value })}
         required
       />
-
-      <a className="margin" href="#" role="button" onClick={handleEdit}>
-        Edit
-      </a>
-      <a
-        className="margin red-bg"
-        href="#"
-        role="button"
-        onClick={handleDelete}
-      >
-        Delete
-      </a>
+      {modCreate ? (
+        <a className="margin" href="#" role="button" onClick={handleAdd}>
+          Add
+        </a>
+      ) : (
+        <>
+          <a className="margin" href="#" role="button" onClick={handleEdit}>
+            Edit
+          </a>
+          <a
+            className="margin red-bg"
+            href="#"
+            role="button"
+            onClick={handleDelete}
+          >
+            Delete
+          </a>
+        </>
+      )}
     </form>
   )
 }
