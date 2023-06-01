@@ -10,6 +10,11 @@ function Header() {
           </Link>
         </li>
       </ul>
+      <ul>
+        <li>
+          <Link to="add-student">Add</Link>
+        </li>
+      </ul>
     </nav>
   )
 }

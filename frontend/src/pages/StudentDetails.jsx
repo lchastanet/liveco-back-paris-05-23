@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 
-import StudentForm from "./StudentForm"
+import StudentForm from "../components/StudentForm"
 
 function StudentDetails() {
   const { id } = useParams()
